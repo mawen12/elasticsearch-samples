@@ -55,4 +55,7 @@ public interface ElasticsearchEntityInformation<T, ID extends Serializable> {
      * @return
      */
     String getParentId(T entity);   
+
+    Class<T> getJavaType();
+
 }

@@ -68,4 +68,16 @@ public class SimpleElasticsearchPersistentEntity<T> implements ElasticsearchPers
         return settingPath;
     }
 
+    @Override
+    public ElasticsearchPersistentProperty getIdProperty() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getIdProperty'");
+    }
+
+    @Override
+    public Class<T> getType() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getType'");
+    }
+
 }

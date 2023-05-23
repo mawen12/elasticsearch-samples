@@ -2,6 +2,8 @@ package com.github.mawen12.data.es.core.mapping;
 
 public interface ElasticsearchPersistentEntity<T> {
 
+    IndexCoordinates getIndexCoordinates();
+
     String getIndexName();
 
     String getIndexType();
