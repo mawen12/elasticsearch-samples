@@ -14,6 +14,8 @@ public interface ElasticsearchPersistentEntity<T> {
     
     String getIndexStoreType();
 
+    ElasticsearchPersistentProperty getIdProperty();
+
     ElasticsearchPersistentEntity getVersionProperty();
 
     String getParentType();
@@ -21,4 +23,8 @@ public interface ElasticsearchPersistentEntity<T> {
     ElasticsearchPersistentEntity getParentIdProperty();
 
     String settingPath();
+
+    Class<T> getType();
+
+
 }

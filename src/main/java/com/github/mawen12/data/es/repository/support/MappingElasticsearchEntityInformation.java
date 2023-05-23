@@ -2,29 +2,46 @@ package com.github.mawen12.data.es.repository.support;
 
 import java.io.Serializable;
 
-import com.github.mawen12.data.es.core.mapping.SimpleElasticsearchPersistentEntity;
+import com.github.mawen12.data.es.core.mapping.ElasticsearchPersistentEntity;
+import com.github.mawen12.data.es.core.mapping.ElasticsearchPersistentProperty;
 
 public class MappingElasticsearchEntityInformation<T, ID extends Serializable> extends AbstractElasticsearchEntityInformation<T, ID> {
 
-    private final SimpleElasticsearchPersistentEntity<T> entityMetadata;
+    private final ElasticsearchPersistentEntity<T> entityMetadata;
 
+    private final String indexName;
+
+    private final String type;
+
+    private Class<?> idClass;
+
+    public MappingElasticsearchEntityInformation(ElasticsearchPersistentEntity<T> entity) {
+        this(entity, null, null);
+    }
+
+    public MappingElasticsearchEntityInformation(ElasticsearchPersistentEntity<T> entity, String indexName, String type) {
+        super(entity.getType());
+        this.entityMetadata = entity;
+        this.indexName = indexName;
+        this.type = type;
+        this.idClass = entity.getIdProperty().getType();
+    }
 
     @Override
     public ID getId(T entity) {
+        ElasticsearchPersistentProperty id = entityMetadata.getIdProperty();
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getId'");
     }
 
     @Override
     public Class<ID> getIdType() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getIdType'");
+        return (Class<ID>) idClass;
     }
 
     @Override
     public String getIdAttribute() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getIdAttribute'");
+        return entityMetadata.getIdProperty().getField().getName();
     }
 
     @Override
